@@ -5,6 +5,12 @@ set -euo pipefail
 echo "[GitAuth] Starting Git authentication setup..."
 
 # Prompt for Git identity
+
+GIT_USER_NAME=""
+GIT_USER_EMAIL=""
+KEY_COMMENT=""
+PASSPHRASE=""
+
 read -rp "Enter your Git user.name: " GIT_USER_NAME
 read -rp "Enter your Git user.email: " GIT_USER_EMAIL
 git config --global user.name "$GIT_USER_NAME"
