@@ -11,8 +11,8 @@ GIT_USER_EMAIL=""
 KEY_COMMENT=""
 PASSPHRASE=""
 
-read -rp "Enter your Git user.name: " GIT_USER_NAME
-read -rp "Enter your Git user.email: " GIT_USER_EMAIL
+read -rp "Enter your Git user.name: " GIT_USER_NAME </dev/tty
+read -rp "Enter your Git user.email: " GIT_USER_EMAIL </dev/tty
 git config --global user.name "$GIT_USER_NAME"
 git config --global user.email "$GIT_USER_EMAIL"
 
@@ -33,8 +33,8 @@ if [[ -f "$KEY_FILE" || -f "$KEY_FILE.pub" ]]; then
 fi
 
 if [[ ! -f "$KEY_FILE" ]]; then
-  read -rp "Enter comment for SSH key (usually your email): " KEY_COMMENT
-  read -rsp "Enter passphrase (leave empty for no passphrase): " PASSPHRASE
+  read -rp "Enter comment for SSH key (usually your email): " KEY_COMMENT </dev/tty
+  read -rsp "Enter passphrase (leave empty for no passphrase): " PASSPHRASE </dev/tty
   echo
   ssh-keygen -t ed25519 -C "${KEY_COMMENT:-$GIT_USER_EMAIL}" -f "$KEY_FILE" -N "${PASSPHRASE:-}"
   echo "[GitAuth] SSH key generated."
