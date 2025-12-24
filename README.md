@@ -25,5 +25,5 @@ Next time onwards, when Termux is started on android phone, user can go to vscod
 ## Open Termux app, and run this script to start VS code tunnel
 - type below command on the terminal that is opened in Termux app
 ```bash
-curl https://raw.githubusercontent.com/sumangadikrindi/vscodeserverontermux/main/setup-autostart-ubuntu-vscode-tunnel.sh | bash
+curl https://raw.githubusercontent.com/sumangadikrindi/vscodeserveronterminux/main/setup-autostart-ubuntu-vscode-tunnel.sh | bash
 ```
