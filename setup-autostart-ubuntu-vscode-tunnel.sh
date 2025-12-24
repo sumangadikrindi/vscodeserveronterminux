@@ -4,7 +4,7 @@ set -euo pipefail
 # ------------------------------
 # User-tunable options
 # ------------------------------
-TUNNEL_NAME="my-s4-terminux-ubuntu"
+TUNNEL_NAME="my-terminux-ubuntu"
 TUNNEL_PROVIDER="github"   # change to "microsoft" if you want Microsoft login
 UBUNTU_LOCALE="en_US.UTF-8"
 
@@ -40,14 +40,6 @@ ln -sf /usr/local/dotnet/dotnet /usr/local/bin/dotnet
 
 echo "[Ubuntu] Verifying .NET install..."
 dotnet --info || true
-
-echo "[Ubuntu] Generating SSH key for GitHub..."
-mkdir -p ~/.ssh
-if [ ! -f ~/.ssh/id_ed25519 ]; then
-  ssh-keygen -t ed25519 -C "your_email@example.com" -f ~/.ssh/id_ed25519 -N ""
-fi
-echo "[Ubuntu] Your SSH public key (add this to GitHub):"
-cat ~/.ssh/id_ed25519.pub
 
 echo "[Ubuntu] Configuring Git user details..."
 git config --global user.name "Your Name"
