@@ -24,6 +24,6 @@ Next time onwards, when Terminux is started on android phone, user can go to vsc
 
 ## Open Terminux app, and run this script to start VS code tunnel
 ### type below command on the terminal that is opened in Terminux app
-'''
+'''bash
 curl https://raw.githubusercontent.com/sumangadikrindi/vscodeserveronterminux/main/setup-autostart-ubuntu-vscode-tunnel.sh | bash
 '''
