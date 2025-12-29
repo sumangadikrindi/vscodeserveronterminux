@@ -84,7 +84,7 @@ proot-distro login ubuntu -- bash -lc "
 set -e
 # Create a helper script for first-run tunnel login + start
 echo \"[6.1/9] Creating helper script directory\"
-install -d -m 700 \"\$HOME/.local/bin\"
+install -d -m 755 \"\$HOME/.local/bin\"
 
 echo \"[6.2/9] Creating helper script\"
 
@@ -127,11 +127,11 @@ fi
 echo \"[Ubuntu] First-run tunnel login complete. Auto-start enabled.\"
 EOF_FIRST
 echo "[6.3/9] Setting script file as executable..."
-chmod +x \$HOME/.local/bin/first_run_tunnel.sh
+chmod +x \"\$HOME/.local/bin/first_run_tunnel.sh\"
 "
 
 echo "[7/9] Run the first-run tunnel helper (this will ask you to sign in once)..."
-proot-distro login ubuntu -- bash -lc '~/.local/bin/first_run_tunnel.sh'
+proot-distro login ubuntu -- bash -lc 'bash "$HOME/.local/bin/first_run_tunnel.sh"'
 
 echo "[8/9] Tunnel auto-start has been appended to Ubuntu ~/.bashrc."
 echo "      Next time you open Termux → auto-login to Ubuntu → tunnel starts automatically."
