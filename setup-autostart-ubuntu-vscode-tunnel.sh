@@ -108,7 +108,7 @@ fi
 
 echo \"[Ubuntu] Starting VS Code Tunnel (name: \$NAME) to complete first-run...\"
 # Start in foreground to ensure device-code flow and initial setup complete
-nohup code tunnel --name \"\$NAME\" --accept-server-license-terms | tee \"\$LOG_FILE\"
+nohup code tunnel --name \"\$NAME\" --accept-server-license-terms >/dev/null
 
 echo \"[Ubuntu] Appending auto-start block to ~/.bashrc...\"
 if ! grep -q \"code tunnel\" \"\$HOME/.bashrc\"; then
