@@ -10,7 +10,8 @@ UBUNTU_LOCALE="en_US.UTF-8"
 
 echo "[1/9] Updating Termux and installing prerequisites..."
 pkg update -y && pkg upgrade -y
-pkg install -y proot-distro wget tar curl nano
+pkg reinstall -y proot-distro
+pkg install wget tar curl nano
 
 echo "[2/9] Installing Ubuntu (proot-distro)..."
 proot-distro install ubuntu
