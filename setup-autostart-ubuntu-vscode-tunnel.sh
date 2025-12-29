@@ -10,7 +10,7 @@ UBUNTU_LOCALE="en_US.UTF-8"
 
 echo "[1/9] Updating Termux and installing prerequisites..."
 pkg update -y && pkg upgrade -y
-pkg install wget tar curl nano
+pkg install -y wget tar curl nano
 echo "[1.2/9] Reinstalling proot-distro..."
 pkg reinstall -y proot-distro
 
