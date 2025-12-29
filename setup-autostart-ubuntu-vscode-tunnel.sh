@@ -81,6 +81,7 @@ echo "[6/9] Preparing tunnel first-run in Ubuntu..."
 proot-distro login ubuntu -- bash -lc "
 set -e
 # Create a helper script for first-run tunnel login + start
+mkdir -p $HOME/.local/bin
 cat > \$HOME/.local/bin/first_run_tunnel.sh <<'EOF_FIRST'
 #!/usr/bin/env bash
 set -euo pipefail
