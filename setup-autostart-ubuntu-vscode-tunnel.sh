@@ -106,37 +106,31 @@ else
   code tunnel user login --provider github
 fi
 
-echo "[Ubuntu] Installing and starting VS Code Tunnel service..."
-code tunnel service install
-code tunnel service start
+echo \"[Ubuntu] Starting VS Code Tunnel (name: \$NAME) to complete first-run...\"
+# Start in foreground to ensure device-code flow and initial setup complete
+nohup code tunnel --name \"\$NAME\" --accept-server-license-terms </dev/null >\"\$LOG_FILE\" 2>&1 &
 
-# Record service status for troubleshooting, but do not block
-code tunnel service status >"$LOG_FILE" 2>&1
-
-echo "[Ubuntu] Appending fallback auto-start block to ~/.bashrc..."
-if ! grep -q "code tunnel" "$HOME/.bashrc"; then
-  cat >> "$HOME/.bashrc" <<'"EOF_AUTOSTART"'
-# Fallback: auto-start VS Code Tunnel if the service is not running
-if [[ $- == *i* ]]; then
-  if ! pgrep -f "code tunnel" >/dev/null 2>&1; then
-    echo "Starting VS Code Tunnel (fallback)..."
+echo \"[Ubuntu] Appending auto-start block to ~/.bashrc...\"
+if ! grep -q \"code tunnel\" \"\$HOME/.bashrc\"; then
+  cat >> \"\$HOME/.bashrc\" <<'EOF_AUTOSTART'
+# Auto-start VS Code Tunnel after interactive shells
+if [[ \$- == *i* ]]; then
+  if ! pgrep -f \"code tunnel\" >/dev/null 2>&1; then
+    echo \"Starting VS Code Tunnel...\"
     nohup code tunnel --accept-server-license-terms \
-      >"$HOME/.cache/code-tunnel.log" 2>&1 &
+      >\"\$HOME/.cache/code-tunnel.log\" 2>&1 &
   fi
 fi
 EOF_AUTOSTART
 fi
 
-echo "[Ubuntu] First-run tunnel setup complete. Service is running (non-blocking)."
+echo \"[Ubuntu] First-run tunnel login complete. Auto-start enabled.\"
 EOF_FIRST
-
-echo "[6.3/9] Normalizing line endings & making helper executable..."
-sed -i "s/\r$//" "$HOME/.local/bin/first_run_tunnel.sh"
-chmod +x "$HOME/.local/bin/first_run_tunnel.sh"
-'
+echo "[6.3/9] Setting script file as executable..."
+chmod +x \"\$HOME/.local/bin/first_run_tunnel.sh\"
+"
 
 echo "[7/9] Run the first-run tunnel helper (this will ask you to sign in once)..."
-# Run via bash to avoid potential noexec mount issues
 proot-distro login ubuntu -- bash -lc 'bash "$HOME/.local/bin/first_run_tunnel.sh"'
 
 echo "[8/9] Tunnel auto-start has been appended to Ubuntu ~/.bashrc."
