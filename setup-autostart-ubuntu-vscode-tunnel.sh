@@ -111,7 +111,7 @@ code tunnel service install
 code tunnel service start
 
 # Record service status for troubleshooting, but do not block
-(code tunnel service status || true) >"$LOG_FILE" 2>&1
+code tunnel service status >"$LOG_FILE" 2>&1
 
 echo "[Ubuntu] Appending fallback auto-start block to ~/.bashrc..."
 if ! grep -q "code tunnel" "$HOME/.bashrc"; then
