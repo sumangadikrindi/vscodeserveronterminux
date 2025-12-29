@@ -106,9 +106,9 @@ else
   code tunnel user login --provider github
 fi
 
-echo \"[Ubuntu] Starting VS Code Tunnel (name: \$NAME) to complete first-run...\"
+echo \"[Ubuntu] Starting VS Code Tunnel (name: ${TUNNEL_NAME}) to complete first-run...\"
 # Start in foreground to ensure device-code flow and initial setup complete
-nohup code tunnel --name \"\$NAME\" --accept-server-license-terms </dev/null >\"\$LOG_FILE\" 2>&1 &
+nohup code tunnel --name \"${TUNNEL_NAME}\" --accept-server-license-terms </dev/null >\"\$LOG_FILE\" 2>&1 &
 
 echo \"[Ubuntu] Appending auto-start block to ~/.bashrc...\"
 if ! grep -q \"code tunnel\" \"\$HOME/.bashrc\"; then
@@ -117,7 +117,7 @@ if ! grep -q \"code tunnel\" \"\$HOME/.bashrc\"; then
 if [[ \$- == *i* ]]; then
   if ! pgrep -f \"code tunnel\" >/dev/null 2>&1; then
     echo \"Starting VS Code Tunnel...\"
-    nohup code tunnel  --name \"$NAME\" --accept-server-license-terms \
+    nohup code tunnel  --name \"${TUNNEL_NAME}\" --accept-server-license-terms \
       >\"\$HOME/.cache/code-tunnel.log\" 2>&1 &
   fi
 fi
