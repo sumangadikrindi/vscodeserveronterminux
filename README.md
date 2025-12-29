@@ -1,5 +1,7 @@
 # Run VS Code Tunnel on your android phone
 
+## Do you like to use your Android phone's processing and memory for your development?
+
 This script is for opening a VS Code tunnel running on pdistro-ubuntu in Termux app on Android phone.
 This installs proot-distro ubuntu, and inside the proot-dristro it installs .net lts sdk, and vs code cli, and opens vs code tunnel.
 
