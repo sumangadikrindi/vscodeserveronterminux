@@ -9,22 +9,22 @@ TUNNEL_PROVIDER="github"   # change to "microsoft" if you want Microsoft login
 UBUNTU_LOCALE="en_US.UTF-8"
 
 echo "[1/9] Updating Termux and installing prerequisites..."
-apt-get update -yq 
-apt-get upgrade -yq
-apt-get install -yq wget tar curl nano
+apt-get update -yq >/dev/null
+apt-get upgrade -yq >/dev/null
+apt-get install -yq wget tar curl nano >/dev/null
 echo "[1.2/9] Reinstalling proot-distro..."
-pkg reinstall -y proot-distro
+pkg reinstall -y proot-distro >/dev/null
 
 echo "[2/9] Installing Ubuntu (proot-distro)..."
-proot-distro install ubuntu
+proot-distro install ubuntu >/dev/null
 
 echo "[3/9] Entering Ubuntu and installing VS Code CLI + .NET SDK + Git..."
 proot-distro login ubuntu -- bash -lc '
 set -e
 
 echo "[Ubuntu] Updating packages..."
-apt update && apt upgrade -y
-apt install -y wget tar curl ca-certificates locales git openssh-client
+apt update >/dev/null && apt upgrade -y >/dev/null
+apt install -y wget tar curl ca-certificates locales git openssh-client >/dev/null
 
 echo "[Ubuntu] Setting UTF-8 locale..."
 locale-gen '"$UBUNTU_LOCALE"' || true
@@ -83,9 +83,9 @@ echo "[6/9] Preparing tunnel first-run in Ubuntu..."
 proot-distro login ubuntu -- bash -lc "
 set -e
 # Create a helper script for first-run tunnel login + start
-echo '[6.1/9] Creating helper script directory'
+echo \"[6.1/9] Creating helper script directory\"
 mkdir -p \$HOME/.local/bin
-echo '[6.2/9] Creating helper script'
+echo '"[6.2/9] Creating helper script\"
 cat > \$HOME/.local/bin/first_run_tunnel.sh <<'EOF_FIRST'
 #!/usr/bin/env bash
 set -euo pipefail
