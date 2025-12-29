@@ -142,3 +142,5 @@ echo "  • Stop tunnel manually: pkill -f \"code tunnel\""
 echo "  • On desktop VS Code, install: 'Remote - Tunnels' and (optional) 'C# Dev Kit'"
 echo "  • Connect to the tunnel and start coding!"
 echo "Script complete."
+
+proot-distro login ubuntu
