@@ -117,7 +117,7 @@ if ! grep -q \"code tunnel\" \"\$HOME/.bashrc\"; then
 if [[ \$- == *i* ]]; then
   if ! pgrep -f \"code tunnel\" >/dev/null 2>&1; then
     echo \"Starting VS Code Tunnel...\"
-    nohup code tunnel  --name \"\$NAME\" --accept-server-license-terms \
+    nohup code tunnel  --name \"\${NAME}\" --accept-server-license-terms \
       >\"\$HOME/.cache/code-tunnel.log\" 2>&1 &
   fi
 fi
